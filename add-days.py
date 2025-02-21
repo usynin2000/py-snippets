@@ -16,6 +16,10 @@ def format_date_to_str(date: datetime) -> str:
 def format_str_to_date(date_str: str) -> datetime:
     return datetime.strptime(date_str, "%H:%M:%S %d.%m.%Y")
 
+def get_difference(date1: datetime, date2: datetime) -> timedelta:
+    return date2 - date1
+
+
 
 
 if __name__ == "__main__":
@@ -29,3 +33,7 @@ if __name__ == "__main__":
     date_str = format_date_to_str(date)
 
     print(format_str_to_date(date_str))
+
+    date2 = datetime(2025, 3, 5)
+
+    print(get_difference(date, date2))
