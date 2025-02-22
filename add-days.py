@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
 
+import calendar
+
 
 def add_days(n: int, date: datetime) -> datetime:
     return date + timedelta(n)
@@ -19,6 +21,8 @@ def format_str_to_date(date_str: str) -> datetime:
 def get_difference(date1: datetime, date2: datetime) -> timedelta:
     return date2 - date1
 
+def is_leap_year(year: int) -> bool:
+    return calendar.isleap(year)
 
 
 
@@ -37,3 +41,6 @@ if __name__ == "__main__":
     date2 = datetime(2025, 3, 5)
 
     print(get_difference(date, date2))
+
+    print(is_leap_year(2024))
+    print(is_leap_year(2025))
