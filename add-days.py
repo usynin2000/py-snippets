@@ -24,6 +24,15 @@ def get_difference(date1: datetime, date2: datetime) -> timedelta:
 def is_leap_year(year: int) -> bool:
     return calendar.isleap(year)
 
+def get_weekday(date: datetime) -> str:
+    return date.strftime("%A")
+
+def get_timestamp_from_datetime(dt: datetime) -> int:
+    return int(dt.timestamp())
+
+
+def get_from_timestamp_to_datetime(timestamp: int) -> datetime:
+    return datetime.fromtimestamp(timestamp)
 
 
 if __name__ == "__main__":
@@ -44,3 +53,9 @@ if __name__ == "__main__":
 
     print(is_leap_year(2024))
     print(is_leap_year(2025))
+
+    print(get_weekday(datetime.now()))
+    print(get_timestamp_from_datetime(date))
+
+    timestamp = get_timestamp_from_datetime(date)
+    print(get_from_timestamp_to_datetime(timestamp))
