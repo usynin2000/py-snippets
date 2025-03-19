@@ -38,6 +38,9 @@ def from_string_datetime_to_timestamp(date_str: str) -> int:
     dt = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
     return int(dt.timestamp())
 
+def days_ago(n: int) -> datetime:
+    return datetime.now() - timedelta(n)
+
 
 if __name__ == "__main__":
     date = datetime.now()
@@ -66,3 +69,5 @@ if __name__ == "__main__":
 
     date_str = "2025-03-05T13:35:39"
     print(from_string_datetime_to_timestamp(date_str))
+
+    print(days_ago(10))
