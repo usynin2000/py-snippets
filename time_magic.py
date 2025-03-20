@@ -1,4 +1,5 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
+
 
 import calendar
 
@@ -42,6 +43,10 @@ def days_ago(n: int) -> datetime:
     return datetime.now() - timedelta(n)
 
 
+def daterange(start: datetime, end: datetime) -> list:
+    return [start + timedelta(n) for n in range(int((end - start).days))]
+
+
 if __name__ == "__main__":
     date = datetime.now()
     print(add_days(3, date))
@@ -71,3 +76,9 @@ if __name__ == "__main__":
     print(from_string_datetime_to_timestamp(date_str))
 
     print(days_ago(10))
+
+    date_1 = datetime(2020, 10, 1)
+    date_2 = datetime(2020, 10, 15)
+
+    print(daterange(date_1, date_2))
+    print(len(daterange(date_1, date_2)))
