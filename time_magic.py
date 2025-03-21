@@ -46,6 +46,11 @@ def days_ago(n: int) -> datetime:
 def daterange(start: datetime, end: datetime) -> list:
     return [start + timedelta(n) for n in range(int((end - start).days))]
 
+def days_diff(start: datetime, end: datetime) -> int:
+    return (end - start).days
+
+def days_from_now(days: int) -> datetime:
+    return datetime.now() + timedelta(days=days)
 
 if __name__ == "__main__":
     date = datetime.now()
@@ -82,3 +87,7 @@ if __name__ == "__main__":
 
     print(daterange(date_1, date_2))
     print(len(daterange(date_1, date_2)))
+
+    print(days_diff(date_1, date_2))
+
+    print(days_from_now(10))
