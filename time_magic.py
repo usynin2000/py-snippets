@@ -52,6 +52,9 @@ def days_diff(start: datetime, end: datetime) -> int:
 def days_from_now(days: int) -> datetime:
     return datetime.now() + timedelta(days=days)
 
+def to_iso_date(date: datetime) -> str:
+    return date.isoformat()
+
 if __name__ == "__main__":
     date = datetime.now()
     print(add_days(3, date))
@@ -91,3 +94,5 @@ if __name__ == "__main__":
     print(days_diff(date_1, date_2))
 
     print(days_from_now(10))
+
+    print(to_iso_date(datetime(2020, 10, 25)))
