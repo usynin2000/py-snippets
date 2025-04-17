@@ -71,6 +71,6 @@ def verify_password(
         return False
 
 if __name__ == "__main__":
-    stored_hash = encrypt_password("secret123")
+    stored_hash = encrypt_password("123")
     print(stored_hash)
 
