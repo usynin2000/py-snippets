@@ -55,6 +55,12 @@ def days_from_now(days: int) -> datetime:
 def to_iso_date(date: datetime) -> str:
     return date.isoformat()
 
+def is_weekday(date: datetime) -> bool:
+    return date.weekday() <= 4
+
+def is_weekeend(date: datetime) -> bool:
+    return date.weekday() > 4
+
 if __name__ == "__main__":
     date = datetime.now()
     print(add_days(3, date))
@@ -96,3 +102,7 @@ if __name__ == "__main__":
     print(days_from_now(10))
 
     print(to_iso_date(datetime(2020, 10, 25)))
+
+
+    print(is_weekday(date_1))
+    print(is_weekeend(date_1))
