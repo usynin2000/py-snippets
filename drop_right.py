@@ -1,10 +1,10 @@
-
-
 def drop_right(lst: list, n: int = 1) -> list:
     return lst[:-n]
 
-def take(lst: list, n: int ) -> list:
+
+def take(lst: list, n: int) -> list:
     return lst[:n]
+
 
 if __name__ == "__main__":
     print(drop_right([1, 2, 3]))

@@ -1,14 +1,9 @@
-
-
 def all_equal(lst: list):
     return len(set(lst)) == 1
 
+
 def all_unique(lst: list) -> bool:
     return len(set(lst)) == len(lst)
-
-
-
-
 
 
 if __name__ == "__main__":

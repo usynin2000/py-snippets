@@ -18,11 +18,7 @@ def valid_parenthesis_brure_force(s: str) -> bool:
 
 def valid_parenthesis_stack(s: str) -> bool:
     stack = list()
-    pairs = {
-        "]": "[",
-        ")": "(",
-        "}": "{"
-    }
+    pairs = {"]": "[", ")": "(", "}": "{"}
 
     for c in s:
         if c in pairs:
@@ -34,8 +30,6 @@ def valid_parenthesis_stack(s: str) -> bool:
             stack.append(c)
 
     return True if not stack else False
-
-
 
 
 if __name__ == "__main__":

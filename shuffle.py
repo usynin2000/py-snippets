@@ -1,10 +1,11 @@
 from copy import deepcopy
 from random import randint
 
-#Randomizes the order of the values of an list, returning a new list.
+# Randomizes the order of the values of an list, returning a new list.
 
-#Uses the Fisher-Yates algorithm to reorder the elements of the list.
-#random.shuffle provides similar functionality to this snippet.
+# Uses the Fisher-Yates algorithm to reorder the elements of the list.
+# random.shuffle provides similar functionality to this snippet.
+
 
 def shuffle_fisher_yates_(lst: list) -> list:
     temp_lst = deepcopy(lst)

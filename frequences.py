@@ -7,6 +7,7 @@ def frequencies(lst) -> dict:
         freq[a] += 1
     return dict(freq)
 
+
 def frequenceies_without_defaultdict(lst: list) -> dict:
     freq = {}
     for el in lst:

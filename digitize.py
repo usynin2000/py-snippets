@@ -1,5 +1,3 @@
-
-
 def digitize(number: int) -> list:
     return list(map(int, str(number)))
 

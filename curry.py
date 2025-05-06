@@ -8,14 +8,12 @@ def curry(fn, *args):
     return partial(fn, *args)
 
 
-
 if __name__ == "__main__":
     add = lambda x, y: x + y
 
     add10 = curry(add, 10)
 
     print(add10(20))
-
 
     add200 = curry(add, 200)
 

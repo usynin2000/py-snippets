@@ -1,10 +1,10 @@
-
-
 def square_numbers(numbers: list) -> list:
-    return list(map(lambda num: num ** 2, numbers))
+    return list(map(lambda num: num**2, numbers))
+
 
 def string_casting(numbers: list) -> list:
     return list(map(str, numbers))
+
 
 def list_addings(a: list, b: list) -> list:
     return list(
@@ -15,6 +15,7 @@ def list_addings(a: list, b: list) -> list:
         )
     )
 
+
 def upper_words(words: list) -> list:
     return list(map(str.upper, words))
 
@@ -22,15 +23,9 @@ def upper_words(words: list) -> list:
 def len_words(words: list) -> list:
     return list(map(len, words))
 
+
 def rm_not_digits(lst: list) -> list:
-    return list(
-        map(
-            lambda x: int(x) if x.isdigit() else None,
-            lst
-        )
-    )
-
-
+    return list(map(lambda x: int(x) if x.isdigit() else None, lst))
 
 
 if __name__ == "__main__":

@@ -1,9 +1,5 @@
-
-
-
 def has_duplicate(nums: list) -> bool:
     return len(set(nums)) < len(nums)
-
 
 
 if __name__ == "__main__":

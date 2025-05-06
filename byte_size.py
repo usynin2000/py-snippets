@@ -1,8 +1,5 @@
-
-
 def byte_size(s: str) -> int:
     return len(s.encode("utf-8"))
-
 
 
 if __name__ == "__main__":

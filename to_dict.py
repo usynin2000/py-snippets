@@ -1,9 +1,5 @@
-
-
-
 def to_dict(keys: list, values: list) -> dict:
     return dict(zip(keys, values))
-
 
 
 if __name__ == "__main__":

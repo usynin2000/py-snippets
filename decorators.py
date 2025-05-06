@@ -14,7 +14,6 @@ from datetime import datetime
 
 
 def timing_decorator(func: Callable) -> Callable:
-
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         start_time = time.perf_counter()
@@ -23,12 +22,14 @@ def timing_decorator(func: Callable) -> Callable:
         execution_time = end_time - start_time
         print(f"Function {func.__name__} executed for {execution_time:.6f}")
         return result
+
     return wrapper
+
 
 ##
 
-def datetime_decorator(func: Callable) -> Callable:
 
+def datetime_decorator(func: Callable) -> Callable:
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         start_time = datetime.now()
@@ -37,8 +38,8 @@ def datetime_decorator(func: Callable) -> Callable:
         execution_time = (end_time - start_time).total_seconds()
         print(f"Function {func.__name__} executed for {execution_time:.6f}")
         return result
-    return wrapper
 
+    return wrapper
 
 
 @timing_decorator
@@ -46,12 +47,13 @@ def example_function():
     time.sleep(1)
     return "Hello World!"
 
+
 @datetime_decorator
 def example2_function():
     import time
+
     time.sleep(3)
     return "Hello World 2!"
-
 
 
 if __name__ == "__main__":

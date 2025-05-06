@@ -1,4 +1,3 @@
-
 ### Greatest common divider
 from functools import reduce
 from math import gcd as gcd_

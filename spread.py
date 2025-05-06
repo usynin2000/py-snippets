@@ -1,5 +1,3 @@
-
-
 def spread(lst: list) -> list:
     res = []
     for i in lst:

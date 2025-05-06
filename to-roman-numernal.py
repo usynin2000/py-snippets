@@ -1,5 +1,3 @@
-
-
 def to_roman_numeral(num: int) -> str:
     lookup = [
         (1000, "M"),
@@ -26,4 +24,4 @@ def to_roman_numeral(num: int) -> str:
 if __name__ == "__main__":
     print(to_roman_numeral(3))  # 'III'
     print(to_roman_numeral(11))  # 'XI'
-    print(to_roman_numeral(1998)) # 'MCMXCVIII'
+    print(to_roman_numeral(1998))  # 'MCMXCVIII'

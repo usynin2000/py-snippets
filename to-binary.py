@@ -1,6 +1,3 @@
-
-
-
 def to_binary(n: int):
     return bin(n)
 

@@ -1,6 +1,3 @@
-
-
-
 def capitilze_every_word(s: str) -> str:
     return s.title()
 

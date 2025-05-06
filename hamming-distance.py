@@ -7,8 +7,6 @@ def hamming_distance(a: int, b: int) -> int:
     return bin(a ^ b).count("1")
 
 
-
-
 if __name__ == "__main__":
     print(hamming_distance(2, 3))
     print(hamming_distance(1, 50))

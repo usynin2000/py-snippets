@@ -21,5 +21,4 @@ def is_anagram_case_insensitive(a: str, b: str) -> bool:
 if __name__ == "__main__":
     print(is_anagram("racecar", "carrace"))
     print(is_anagram("racecar", "ca2rrace"))
-    print(is_anagram_case_insensitive('#anagram', 'Nag a ram!'))
-
+    print(is_anagram_case_insensitive("#anagram", "Nag a ram!"))

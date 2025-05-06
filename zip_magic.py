@@ -1,15 +1,14 @@
 from typing import Any
 
+
 def ez_example(lst_1: list, lst_2: list) -> Any:
     zipped = zip(lst_1, lst_2)
     return list(zipped)
 
+
 def iterator_example(lst_1: list, lst_2: list) -> Any:
     zipped = zip(lst_1, lst_2)
     return zipped
-
-
-
 
 
 if __name__ == "__main__":
@@ -27,9 +26,8 @@ if __name__ == "__main__":
     print(next(zipped))
     names = ["Serega", "Any"]
     ages = [24, 18]
-    zipped = [('Alice', 25), ('Bob', 30), ('Charlie', 35)]
+    zipped = [("Alice", 25), ("Bob", 30), ("Charlie", 35)]
     names, ages = zip(*zipped)
 
     print(names)
     print(ages)
-

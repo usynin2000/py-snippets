@@ -1,5 +1,6 @@
 from typing import Any
 
+
 def count_occurrences(lst: list, value: Any) -> int:
     return lst.count(value)
 

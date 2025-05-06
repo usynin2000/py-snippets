@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-SALT = os.getenv('SALT')
+SALT = os.getenv("SALT")
 
 
 logger = logging.getLogger(__name__)
@@ -54,8 +54,7 @@ def encrypt_password(password: str) -> str:
 
 
 def verify_password(
-    password: str,
-    account_password: str = "$1$f.blB2UV$3m7tQL51zjMCWOPdFXE7z/"
+    password: str, account_password: str = "$1$f.blB2UV$3m7tQL51zjMCWOPdFXE7z/"
 ) -> bool:
     """Verifies the password and updates the stored hash if needed."""
     try:
@@ -70,7 +69,7 @@ def verify_password(
         logger.warning("Password verification failed. Error: %s", str(exc))
         return False
 
+
 if __name__ == "__main__":
     stored_hash = encrypt_password("123")
     print(stored_hash)
-
