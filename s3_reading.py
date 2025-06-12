@@ -23,14 +23,12 @@ with urlopen(url) as response:
     for line in response:
         user_id = line.decode("utf-8").strip()
         print(user_id)
-        time.sleep(0.2)
         if user_id:
             user_ids.append(user_id)
 
             if len(user_ids) == batch_size:
                 process_user_ids(user_ids)
                 user_ids = []
-                time.sleep(0.2)
 
 if user_ids:
     process_user_ids(user_ids)

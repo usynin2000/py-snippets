@@ -8,6 +8,8 @@
 
 
 def most_frequent(lst: list) -> int:
+    print("set", set(lst))
+    print("key", lst.count) # key <built-in method count of list object at 0x1025c4940>
     return max(set(lst), key=lst.count)
 
 
