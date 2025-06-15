@@ -26,12 +26,13 @@ def single_number_hash_set(nums: list[int]) -> int:
 
     return list(seen)[0]
 
+
 def single_number_sorting(nums: list[int]) -> int:
     nums.sort()
 
     i = 0
     while i < len(nums) - 1:
-        if nums[i] == nums[i +1]:
+        if nums[i] == nums[i + 1]:
             i += 2
         else:
             return nums[i]
@@ -43,6 +44,7 @@ def single_number_bit_manipulation(nums: list[int]) -> int:
     for num in nums:
         res = num ^ res
     return res
+
 
 if __name__ == "__main__":
     lst = [7, 6, 6, 7, 8]
