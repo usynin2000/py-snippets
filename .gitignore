@@ -171,3 +171,4 @@ cython_debug/
 .pypirc
 .idea
 *.jpg
+check_password_for_qa.py
