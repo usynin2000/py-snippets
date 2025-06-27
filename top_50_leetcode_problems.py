@@ -19,5 +19,37 @@ def two_sum(nums: list, target: int) -> list:
         hash_map[num] = i
 
 
+def contains_duplicate(nums: list) -> bool:
+    return len(nums) != len(set(nums))
+
+
+
+from collections import Counter
+
+def is_anagram(s: str, t: str) -> bool:
+     return Counter(s) == Counter(t)
+
+
+def is_anagram_big(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
+
+    counter = dict()
+    for char in s:
+        counter[char] = counter.get(char, 0) + 1
+
+    for char in t:
+        if char not in counter or counter[char] == 0:
+            return False
+        counter[char] -= 1
+
+    return True
+
+
 if __name__ == "__main__":
     print(two_sum([2, 7, 11, 15], 9))
+
+    print(contains_duplicate([1, 2, 3, 1]))
+
+    print(is_anagram("anagram", "nagaram"))
+    print(is_anagram_big("car", "rat"))
