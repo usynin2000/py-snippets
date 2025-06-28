@@ -46,6 +46,18 @@ def is_anagram_big(s: str, t: str) -> bool:
     return True
 
 
+from collections import defaultdict
+
+def group_anagrams(strs: list):
+    res = defaultdict(list)
+    for word in strs:
+        key = tuple(sorted(word))
+        res[key].append(word)
+
+    print(dict(res))
+    return list(res.values())
+
+
 if __name__ == "__main__":
     print(two_sum([2, 7, 11, 15], 9))
 
@@ -53,3 +65,4 @@ if __name__ == "__main__":
 
     print(is_anagram("anagram", "nagaram"))
     print(is_anagram_big("car", "rat"))
+    print(group_anagrams(["eat","tea","tan","ate","nat","bat"]))
