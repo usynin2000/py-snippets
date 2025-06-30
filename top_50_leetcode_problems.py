@@ -58,6 +58,19 @@ def group_anagrams(strs: list):
     return list(res.values())
 
 
+
+# #Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+# Input: nums = [1,1,1,2,2,3], k = 2
+# Output: [1,2]
+#
+# Input: nums = [1], k = 1
+# Output: [1]
+#
+def top_k_frequent(nums: list, k: int) -> list:
+    pass
+
+
+
 if __name__ == "__main__":
     print(two_sum([2, 7, 11, 15], 9))
 
