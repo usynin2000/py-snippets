@@ -67,8 +67,20 @@ def group_anagrams(strs: list):
 # Output: [1]
 #
 def top_k_frequent(nums: list, k: int) -> list:
-    pass
+    count = dict()
+    for i in nums:
+        count[i] = count.get(i, 0) + 1
 
+    freg_list = []
+    for k, v in count.items():
+        freg_list.append((v, k))
+
+    freg_list.sort(reverse=True)
+
+    result = []
+    for i in range(k):
+        result.append(freg_list[i][1])
+    return result
 
 
 if __name__ == "__main__":
@@ -79,3 +91,4 @@ if __name__ == "__main__":
     print(is_anagram("anagram", "nagaram"))
     print(is_anagram_big("car", "rat"))
     print(group_anagrams(["eat","tea","tan","ate","nat","bat"]))
+    print(top_k_frequent([1,1,1,2,2,3],2 ))
