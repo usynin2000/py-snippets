@@ -92,3 +92,4 @@ if __name__ == "__main__":
     print(is_anagram_big("car", "rat"))
     print(group_anagrams(["eat","tea","tan","ate","nat","bat"]))
     print(top_k_frequent([1,1,1,2,2,3],2 ))
+    print(top_k_frequent([1,1,1,2,2,3, 4, 5],3 ))
