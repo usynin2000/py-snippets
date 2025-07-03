@@ -82,6 +82,27 @@ def top_k_frequent(nums: list, k: int) -> list:
         result.append(freg_list[i][1])
     return result
 
+# Product of Array Except Self
+# Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+#
+# The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+#
+# You must write an algorithm that runs in O(n) time and without using the division operation.
+
+# def product_except_self(nums: list) -> list:
+#     prods = defaultdict(int)
+#     def prod(arr):
+#         return 0
+#     ans = 1
+#     for i in arr:
+#         ans *= i
+#     return ans
+
+
+
+
+
+
 
 if __name__ == "__main__":
     print(two_sum([2, 7, 11, 15], 9))
