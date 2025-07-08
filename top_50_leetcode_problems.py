@@ -109,8 +109,21 @@ def top_k_frequent(nums: list, k: int) -> list:
 # Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
 # Output: [[1,6],[8,10],[15,18]]
 # Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
+
+## BAD UNDERSTANDING NEED CHAT WITH CHPT
 def merge_intervals(intervals:list[list]) -> list[list]:
-    pass
+    intervals.sort()
+    merged = []
+    prev = intervals[0]
+
+    for i in range(1, len(intervals)):
+        if intervals[i][0] <= prev[1]:
+            prev[1] = max(prev[1], intervals[i][1])
+        else:
+            merged.append(prev)
+            prev = intervals[i]
+    merged.append(prev)
+    return merged
 
 
 if __name__ == "__main__":
