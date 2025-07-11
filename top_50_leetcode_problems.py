@@ -172,3 +172,4 @@ if __name__ == "__main__":
     print(merge_intervals([[1, 2], [2, 4]]))
     print(max_sub_array([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
     print(max_sub_array([5,4,-1,7,8]))
+    print(max_sub_array([5,4,-1,7,8, 10]))
