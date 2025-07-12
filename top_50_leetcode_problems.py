@@ -1,6 +1,6 @@
 ### Add one more solution of task every day. Repeat 5 of previos days and you are ready for inerview.
 
-
+### ARRAYS AND HASHING
 
 # 1. Two Sum
 
@@ -148,15 +148,26 @@ def max_sub_array(nums: list) -> int:
     res = nums[0]
     total = 0
 
-    for n in nums:
+    for num in nums:
         if total < 0:
             total = 0
 
-        total += n
-        res = max(res, total)
+        total += num
+
+        res = max(total, res)
 
     return res
 
+
+
+
+
+### TWO POINTERS
+def is_palindrome(s: str) -> bool:
+    filtered = [
+        c.lower() for c in s if c.isalnum()
+    ]
+    return filtered == filtered[::-1]
 
 
 if __name__ == "__main__":
@@ -173,3 +184,7 @@ if __name__ == "__main__":
     print(max_sub_array([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
     print(max_sub_array([5,4,-1,7,8]))
     print(max_sub_array([5,4,-1,7,8, 10]))
+    s = "Was it a car or a cat I saw?"
+    print(is_palindrome(s))
+    s = "tab a cat"
+    print(is_palindrome(s))
