@@ -181,19 +181,38 @@ def is_palindrome(s: str) -> bool:
 # Input: numbers = [2,7,11,15], target = 9
 # Output: [1,2]
 # Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2]
-
 def two_sum_with_sorted_array(numbers: list[int], target: int) -> list[int]:
     left, right = 0, len(numbers) - 1
 
     while left < right:
-        sum = numbers[left] + numbers[right]
-
-        if sum == target:
+        s = numbers[left] + numbers[right]
+        if s == target:
             return [left + 1, right + 1]
-        elif sum < target:
+        elif s < target:
             left += 1
         else:
             right -= 1
+
+# Given a string s, find the length of the longest substring without duplicate characters.
+# Example 1:
+#
+# Input: s = "abcabcbb"
+# Output: 3
+# Explanation: The answer is "abc", with the length of 3.
+
+### HAVE NO IDEA WHAT IS GOING ON
+
+def length_of_longest_substring(s: str) -> int:
+    char_set = set()
+    l = 0
+    max_len = 0
+    for r in range(len(s)):
+        while s[r] in char_set:
+            char_set.remove(s[l])
+            l += 1
+        char_set.add(s[r])
+        max_len = max(max_len, r - l + 1)
+    return max_len
 
 
 
@@ -218,3 +237,4 @@ if __name__ == "__main__":
     print(two_sum_with_sorted_array([2,7,11,15], 9))
     print(two_sum_with_sorted_array([2,3,4], 6))
     print(two_sum_with_sorted_array([-1,0], -1))
+    print(length_of_longest_substring("abcabcbb"))
