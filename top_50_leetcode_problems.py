@@ -199,7 +199,7 @@ def two_sum_with_sorted_array(numbers: list[int], target: int) -> list[int]:
 # Input: s = "abcabcbb"
 # Output: 3
 # Explanation: The answer is "abc", with the length of 3.
-
+# https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 ### HAVE NO IDEA WHAT IS GOING ON
 
 def length_of_longest_substring(s: str) -> int:
@@ -238,3 +238,4 @@ if __name__ == "__main__":
     print(two_sum_with_sorted_array([2,3,4], 6))
     print(two_sum_with_sorted_array([-1,0], -1))
     print(length_of_longest_substring("abcabcbb"))
+    print(length_of_longest_substring("abcdddzabcbb"))
