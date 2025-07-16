@@ -213,6 +213,34 @@ def length_of_longest_substring(s: str) -> int:
         char_set.add(s[r])
         max_len = max(max_len, r - l + 1)
     return max_len
+#
+#
+# Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+#
+# An input string is valid if:
+#
+# Open brackets must be closed by the same type of brackets.
+# Open brackets must be closed in the correct order.
+# Every close bracket has a corresponding open bracket of the same type.
+#
+
+
+def valid_parentheses(s: str) -> bool:
+    stack = []
+    mapping = {
+        "}": "{",
+        ")": "(",
+        "]": "["
+    }
+
+    for ch in s:
+        if ch in mapping:
+            if not stack or stack.pop() != mapping[ch]:
+                return False
+        else:
+            stack.append(ch)
+
+    return not stack
 
 
 
@@ -239,3 +267,6 @@ if __name__ == "__main__":
     print(two_sum_with_sorted_array([-1,0], -1))
     print(length_of_longest_substring("abcabcbb"))
     print(length_of_longest_substring("abcdddzabcbb"))
+    print(valid_parentheses("()[]{}"))
+    print(valid_parentheses("()"))
+    print(valid_parentheses("(]"))
