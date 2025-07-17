@@ -243,7 +243,6 @@ def valid_parentheses(s: str) -> bool:
     return not stack
 
 
-
 if __name__ == "__main__":
     print(two_sum([2, 7, 11, 15], 9))
 
@@ -270,3 +269,6 @@ if __name__ == "__main__":
     print(valid_parentheses("()[]{}"))
     print(valid_parentheses("()"))
     print(valid_parentheses("(]"))
+    print(valid_paranthesis_2("(]"))
+    print(valid_parentheses("((((())))))"))
+    print(valid_paranthesis_2("((((())))))"))
