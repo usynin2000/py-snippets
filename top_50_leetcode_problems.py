@@ -224,10 +224,9 @@ def length_of_longest_substring(s: str) -> int:
 # Every close bracket has a corresponding open bracket of the same type.
 #
 
-
-def valid_parentheses(s: str) -> bool:
-    stack = []
-    mapping = {
+def valid_parentheses_2(s: str) -> bool:
+    stack = list()
+    mapping={
         "}": "{",
         ")": "(",
         "]": "["
@@ -266,9 +265,7 @@ if __name__ == "__main__":
     print(two_sum_with_sorted_array([-1,0], -1))
     print(length_of_longest_substring("abcabcbb"))
     print(length_of_longest_substring("abcdddzabcbb"))
-    print(valid_parentheses("()[]{}"))
-    print(valid_parentheses("()"))
-    print(valid_parentheses("(]"))
-    print(valid_paranthesis_2("(]"))
-    print(valid_parentheses("((((())))))"))
-    print(valid_paranthesis_2("((((())))))"))
+    print(valid_parentheses_2("()[]{}"))
+    print(valid_parentheses_2("()"))
+    print(valid_parentheses_2("(]"))
+    print(valid_parentheses_2("((((())))))"))
