@@ -11,6 +11,7 @@
 # Output: [0,1]
 # Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
+# Wrote 2 times
 def two_sum(nums: list, target: int) -> list:
     hash_map = dict()
     for i, num in enumerate(nums):
@@ -18,10 +19,9 @@ def two_sum(nums: list, target: int) -> list:
             return [i, hash_map[target - num]]
         hash_map[num] = i
 
-
+# Wrote 2 times
 def contains_duplicate(nums: list) -> bool:
     return len(nums) != len(set(nums))
-
 
 
 from collections import Counter
