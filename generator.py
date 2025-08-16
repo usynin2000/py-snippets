@@ -8,6 +8,22 @@ def count_up_to(n):
         count += 1
 
 
+
+
+
+
+
+def countdown(n: int):
+    while n > 0:
+        yield n
+        n -= 1
+
+
+def even_numbers(value: int):
+    for i in range(0, value + 1, 2):
+        yield i
+
+
 if __name__ == "__main__":
 
     # Использование генератора
@@ -17,3 +33,10 @@ if __name__ == "__main__":
 
     for number in gen:
         print(f"Получено число: {number}")
+
+
+    for num in countdown(5):
+        print(num)
+
+    for num in even_numbers(10):
+        print(num)

@@ -56,6 +56,40 @@ def example2_function():
     return "Hello World 2!"
 
 
+
+
+def timeit(mode: str = "silent") -> Callable:
+    def decorator(func: Callable) -> Callable:
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            start_time = time.time()
+            result = func(*args, **kwargs)
+            end_time = time.time()
+
+            time_info = f"{wrapper.__name__}: {end_time - start_time:.2f} сек."
+
+            if mode == "print":
+                print(time_info)
+            elif mode == "file":
+                with open("timelog.txt", "a") as time_file:
+                    time_file.write(time_info + "\n")
+
+            return result
+        return wrapper
+    return decorator
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
 
     example_function()
