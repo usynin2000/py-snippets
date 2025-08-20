@@ -15,7 +15,7 @@ async def main():
     print("after first sleep")
 
     # asyncio.gather(result1, result2) возвращает результаты в том порядке, в котором ты передал задачи, не по порядку завершения.
-    res_a, res_b = await asyncio.gather(result1, result2) #
+    res_a, res_b = await asyncio.gather(result1, result2)
     print(f"results: {res_a}, {res_b}")
 
     print("main end")
