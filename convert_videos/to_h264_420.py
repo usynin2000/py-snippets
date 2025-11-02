@@ -41,4 +41,5 @@ def convert_videos_in_dir_h264(
 if __name__ == "__main__":
     input_folder = "/Users/s.usynin/Desktop/загс"
     output_folder = "/Users/s.usynin/Desktop/загс_converted"
-    convert_videos_in_dir_h264(input_folder, output_folder, 3)
+    max_videos = 3
+    convert_videos_in_dir_h264(input_folder, output_folder, max_videos)
