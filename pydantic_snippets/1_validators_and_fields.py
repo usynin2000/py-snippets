@@ -10,19 +10,20 @@ class Product(BaseModel):
     discount: Optional[float] = Field(default=0, ge=0, le=100)
 
 
-    @field_validator("name")
+    @field_validator("name", mode="before")
     @classmethod
     def name_must_not_be_empty(cls, v: str):
         if v.strip() == "":
             raise ValueError("Name must not be empty")
         return v.strip().title()
     
-    @field_validator("discount")
+    @field_validator("discount", mode="before")
     @classmethod 
     def validate_discount(cls, v: float | None) -> float | None:
         if v and v > 50:
             print("Attention the discount is huge!")
         return v
+    
 
 
 class Order(BaseModel):
