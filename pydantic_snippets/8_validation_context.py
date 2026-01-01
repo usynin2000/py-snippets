@@ -26,6 +26,25 @@ class User(BaseModel):
                 raise ValueError(f"Role should be on of {allowed_roles}")
             return v
 
+# Example 2: Using context in model_validator
+class Order(BaseModel):
+    product_id: int
+    quantity: int
+    price: float
+    discount: float = 0
+
+    @model_validator(mode="after")
+    def validate_order(self, info: ValidationInfo) -> "Order":
+        if info.context:
+            max_quantity = info.context.get("max_quantity_per_order")
+            if max_quantity and self.quantity > max_quantity:
+                raise ValueError(f"Max quantitiy: {max_quantity}")
+        
+            max_discount = info.context.get("max_discount_percent", 100)
+            if self.discount > max_discount:
+                raise ValueError(f"Max discount: {max_discount}")
+        
+        return self 
 
 
 
@@ -47,3 +66,23 @@ if __name__ == "__main__":
         )
     except Exception as e:
         print(f"Error!! problem with context {e}")
+    
+
+    print("Example 2: Context for order:\n")
+
+    order_context = {"max_quantity_per_order": 10, "max_discount_percent": 50}
+
+    try: 
+        order1 = Order.model_validate(
+            {"product_id": 1, "quantity": 15, "price": 1000, "discount": 30},
+            context=order_context,
+        )
+    except Exception as e:
+        print(f"Error of quantity: {e}")
+
+
+    order2 = Order.model_validate(
+        {"product_id": 1, "quantity": 5, "price": 1000, "discount": 40},
+        context=order_context
+    )
+    print(f"✓ Valid order: {order2.model_dump()}\n")
