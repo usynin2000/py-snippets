@@ -29,9 +29,21 @@ for epoch in range(10):
         prediction = perceptron(sun, rain)
 
         error = correct_answer - prediction
-        w_sun += learning_rate * error * sun
-        w_rain += learning_rate * error * rain
-        lazy += learning_rate * error
+        w_sun = w_sun + learning_rate * error * sun
+        w_rain = w_rain + learning_rate * error * rain
+        # Как алтернатива, можно использовать следующий код:
+        # if error == 1 and sun == 1:
+        #     w_sun = w_sun + learning_rate
+        # elif error == -1 and sun == 1:
+        #     w_sun = w_sun - learning_rate
+
+        # if error == 1 and rain == 1:
+        #     w_rain = w_rain + learning_rate
+        # elif error == -1 and rain == 1:
+        #     w_rain = w_rain - learning_rate 
+
+
+        lazy = lazy + learning_rate * error
 
 
 # Посмотрим итоговые результаты в конце:
