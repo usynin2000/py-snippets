@@ -38,5 +38,10 @@ async def main():
     async with websockets.serve(handle_client, "localhost", 8765):
         await asyncio.Future()
 
+        # asyncio.Future() без параметров создаёт объект Future, который никогда не завершится
+        # await на такой Future будет ждать вечно
+        # Это нужно, чтобы сервер не остановился сразу после запуска
+
+
 if __name__ == "__main__":
     asyncio.run(main())
