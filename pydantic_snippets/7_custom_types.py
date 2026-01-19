@@ -15,6 +15,19 @@ class Product(BaseModel):
     quantity: PositiveInt
     price: PositiveInt
 
+print("Exmaple 1: PositiveInt\n")
+
+try:
+    product = Product(name="Laptop", quantity=10, price=5000)
+    print(f"Product is created {product.model_dump()}")
+except Exception as e:
+    print(f"error: {e}")
+
+try: 
+    invalid_product = Product(name="Laptop", quantity=-5, price=5000)
+except Exception as e:
+    print(f"Error: {e}")
+
 
 # Example 2: BeforeValidator for data conversion
 def convert_to_uppercase(v: str | None) -> str:
@@ -28,6 +41,16 @@ UpperCaseStr = Annotated[str, BeforeValidator(convert_to_uppercase)]
 class Company(BaseModel):
     name: UpperCaseStr
     code: UpperCaseStr
+
+
+print("\n\nExample 2: UpperCaseStr\n")
+
+company = Company(name="google", code="goog")
+print(f"Company: {company.model_dump()}")
+print(f"The name of the company in uppercase {company.name}\n")
+
+
+
 
 
 # Example 3: WrapValidator for full control
@@ -47,9 +70,18 @@ def validate_email_or_phone(v, handler, info: ValidationInfo):
 ContactInfo = Annotated[dict, WrapValidator(validate_email_or_phone)]
 
 
+
 class User(BaseModel):
     name: str
     contact: ContactInfo
+
+
+print("\n\nExample 3: WrapValidator for email of phone\n")
+user1 = User(name="Sergo", contact="usynin.s00@mail.ru")
+print(f"User 1: {user1.model_dump()}")
+
+user2 = User(name="Anna", contact="+79778472107")
+print(f"User 2: {user2.model_dump()}\n")
 
 
 # Example 4: Composition of validators
@@ -61,7 +93,7 @@ def validate_min_length(v: str) -> str:
         raise ValueError("Minimus length is 3 chars")
     return v
 
-CleanStrig = Annotated[
+CleanString = Annotated[
     str,
     BeforeValidator(strip_whitespace),
     AfterValidator(validate_min_length),
@@ -69,47 +101,58 @@ CleanStrig = Annotated[
 
 
 class Account(BaseModel):
-    username: CleanStrig
-    display_name: CleanStrig
+    username: CleanString
+    display_name: CleanString
+
+print("Example 4: Composition validators\n")
+account = Account(username="    john  ", display_name="       John Rogan   ")
+print(f"Account (cleaned): {account.model_dump()}")
 
 
-if __name__ == "__main__":
-    print("Exmaple 1: PositiveInt\n")
-
-    try:
-        product = Product(name="Laptop", quantity=10, price=5000)
-        print(f"Product is created {product.model_dump()}")
-    except Exception as e:
-        print(f"error: {e}")
-    
-    try: 
-        invalid_product = Product(name="Laptop", quantity=-5, price=5000)
-    except Exception as e:
-        print(f"Error: {e}")
-    
-
-    print("Example 2: UpperCaseStr\n")
-
-    company = Company(name="google", code="goog")
-    print(f"Company: {company.model_dump()}")
-    print(f"The name of the company in uppercase {company.name}\n")
+try:
+    invalid_account = Account(username="    jo     ", display_name="OK name")
+except Exception as e:
+    print(f"Error {e}")
 
 
-    print("Example 3: WrapValidator for email of phone\n")
-    user1 = User(name="Sergo", contact="usynin.s00@mail.ru")
-    print(f"User 1: {user1.model_dump()}")
+# When to use BeforeValidator?
+# BeforeValidator выполняется ДО основной валидации типа. 
+# Используется для предобработки и нормализации входных данных.
 
-    user2 = User(name="Anna", contact="+79778472107")
-    print(f"User 2: {user2.model_dump()}\n")
+# BeforeValidator для convert_to_uppercase
+# def convert_to_uppercase(v: str | None) -> str:
+#     if v is None:
+#         return ""
+#     return str(v).upper()  # Преобразует ПЕРЕД проверкой типа str
+
+# UpperCaseStr = Annotated[str, BeforeValidator(convert_to_uppercase)]
+
+# BeforeValidator для strip_whitespace
+# def strip_whitespace(v: str) -> str:
+#     return v.strip() if isinstance(v, str) else v  # Очищает пробелы ПЕРЕД валидацией
+
+# Когда использовать:
+# Когда входные данные грязные (с пробелами, в разном регистре)
+# Когда нужно преобразовать данные в нужный формат перед основной валидацией
+# Когда вход может быть None или другого типа, и его нужно нормализовать
 
 
-    print("Example 4: Composition validators\n")
-    account = Account(username="    john  ", display_name="       John Rogan   ")
-    print(f"Account (cleaned): {account.model_dump()}")
+# When to use AfterValidator?
+# AfterValidator выполняется ПОСЛЕ основной валидации типа. 
+# Используется для дополнительных проверок уже валидных данных.
+# # AfterValidator для validate_positive
+# def validate_positive(v: int) -> int:
+#     if v <= 0:  # Проверяет ПОСЛЕ того, как v уже стало int
+#         raise ValueError("Number should be positive")
+#     return v
 
-
-    try: 
-        invalid_account = Account(username="    jo     ", display_name="OK name")
-    except Exception as e:
-        print(f"Error {e}")
-
+# PositiveInt = Annotated[int, AfterValidator(validate_positive)]
+# AfterValidator для validate_min_length
+# def validate_min_length(v: str) -> str:
+#     if len(v) < 3:  # Проверяет длину ПОСЛЕ strip_whitespace
+#         raise ValueError("Minimus length is 3 chars")
+#     return v
+# Когда использовать:
+# - Когда нужны бизнес-правила (длина строки, диапазон значений)
+# - Когда валидация зависит от уже обработанного значения
+# - Когда проверка невозможна без предварительной нормализации
