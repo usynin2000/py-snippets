@@ -118,6 +118,7 @@ class Order(BaseModel):
 
 if __name__ == "__main__":
     print("=== Pydantic Functional Validators and Serializers Demo ===\n")
+    a = 2
 
     # Example 1: BeforeValidator and AfterValidator
     print("1. User Profile with Validators:")
@@ -143,6 +144,7 @@ if __name__ == "__main__":
         print(f"✗ Expected validation errors: {len(e.errors())} errors found")
 
     print()
+    a = 4
 
     # Example 2: Password validation
     print("2. Secure Account with Password Validation:")

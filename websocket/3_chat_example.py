@@ -1,9 +1,11 @@
 import asyncio
-import websockets
 from datetime import datetime
+
+import websockets
 
 # Set of all connected clients
 connected_clients = set()
+
 
 async def broadcast_message(message: str, sender=None):
     """
@@ -14,10 +16,14 @@ async def broadcast_message(message: str, sender=None):
         tasks = [
             client.send(message)
             for client in connected_clients
-            if client != sender # Not sending to sender
+            if client != sender  # Not sending to sender
         ]
-        
-        await asyncio.gather(*tasks, return_exceptions=True)
+
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        # Log any errors that occurred during broadcast
+        for i, result in enumerate(results):
+            if isinstance(result, Exception):
+                print(f"Error broadcasting to client {i}: {result}")
 
 
 async def handle_client(websocket, path):
@@ -39,21 +45,28 @@ async def handle_client(websocket, path):
 
     try:
         async for message in websocket:
-            timestamp = datetime.now().strftime('%H:%M:%S')
+            print(f"Received message from {client_id}: {message}")  # Debug log
+            timestamp = datetime.now().strftime("%H:%M:%S")
             formatted_message = f"[{timestamp}] {client_id}: {message}"
 
             # sending messages to all clients
             await broadcast_message(formatted_message, sender=websocket)
+            print(f"Broadcasted message to {len(connected_clients) - 1} clients")  # Debug log
     except websockets.exceptions.ConnectionClosed:
         print(f"Client is disconnected: {client_id}")
+    except Exception as e:
+        print(f"Error handling client {client_id}: {e}")  # Debug log
+        raise
     finally:
         connected_clients.discard(websocket)
         print(f"All clients: {len(connected_clients)}")
 
-    
-        await broadcast_message(
-            f"[{datetime.now().strftime('%H:%M:%S')}] User {client_id} left chat"
-        )
+        # Only broadcast if there are other clients left
+        if connected_clients:
+            await broadcast_message(
+                f"[{datetime.now().strftime('%H:%M:%S')}] User {client_id} left chat"
+            )
+
 
 async def main():
     print("Setting up chat-server ws://localhost:8765")
@@ -61,6 +74,7 @@ async def main():
 
     async with websockets.serve(handle_client, "localhost", 8765):
         await asyncio.Future()
+
 
 if __name__ == "__main__":
     asyncio.run(main())
